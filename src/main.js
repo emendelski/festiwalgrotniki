@@ -1,3 +1,5 @@
+import '../scss/style.scss';
+
 /* debouncedresize */
 function on_resize(c,t){onresize=function(){clearTimeout(t);t=setTimeout(c,100);}; return c;}
 
