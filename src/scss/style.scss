@@ -56,6 +56,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 3rem;
 
   @media (min-width: 1330px) {
     flex-direction: row;
@@ -65,12 +66,17 @@ body {
 .sidebar {
   flex: 1 1 auto;
   color: #000;
-  padding: 20px;
   font-size: 1.2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  margin-right: 3rem;
+  margin-top: 3rem;
+
+  @media (min-width: 1329px) {
+    margin-top: 0;
+  }
 
   @media (min-width: 769px) and (max-width: 1329px) {
     flex-direction: row;
@@ -85,8 +91,7 @@ body {
 
   @media (min-width: 1330px) {
     order: 1;
-    width: 400px;
-    padding: 20px 0 20px 3rem;
+    width: 60rem;
   }
 
   &-text {
@@ -109,8 +114,11 @@ body {
 
   &-images {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
+
+    > img + img {
+      margin-left: 1.5rem;
+    }
   }
 
   &-title {
@@ -141,10 +149,11 @@ body {
 }
 
 .content {
-  background-color: $color-primary;
-  border: 20px solid #fff;
+  background-image: linear-gradient(-45deg, #2e2c41 0%, #79466b 100%);
+  border-radius: 0 3rem 0 3rem;
+  box-shadow: rgba(#000, .05) 0 0 2rem;
   padding: 3rem;
-  min-height: 100vh;
+  min-height: calc(100vh - 6rem);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -154,30 +163,29 @@ body {
   @media (min-width: 1330px) {
     width: auto;
     order: 2;
-    margin-left: auto;
   }
 }
 
 .title {
-  font-size: 4rem;
+  font-size: 5rem;
   display: block;
   margin: 0;
 
   @media (min-width: 768px) {
-    font-size: 5rem;
+    font-size: 7rem;
   }
 
   > span {
     display: block;
-    letter-spacing: -.045em;
+    letter-spacing: .045em;
+    font-weight: 800;
     line-height: .875;
     font-size: 3.6em;
   }
 
   > small {
     text-transform: uppercase;
-    letter-spacing: -.05em;
-    font-weight: bold;
+    font-weight: 700;
     display: block;
     font-size: 1em;
   }
@@ -185,9 +193,9 @@ body {
 
 .black,
 .white {
-  padding: .25em;
+  padding: .25em .5em;
   font-weight: bold;
-  display: inline-block;
+  display: inline-flex;
 }
 
 .white {
@@ -214,7 +222,7 @@ body {
   @media (min-width: 768px) {
     text-align: right;
     position: absolute;
-    top: 4rem;
+    top: 5.5rem;
     right: 3rem;
   }
 
@@ -230,11 +238,16 @@ body {
 
     @media (min-width: 768px) {
       display: block;
+      font-size: 3.5rem;
     }
   }
 
   .white {
     font-size: 1.5rem;
+
+    @media (min-width: 768px) {
+      font-size: 2.5rem;
+    }
   }
 }
 
@@ -250,31 +263,50 @@ body {
   margin-top: auto;
 
   &-events {
-    margin: 0 -15px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
 
-    > .col {
-      padding: 0 15px;
+    @media (min-width: 769px) and (max-width: 940px) {
+      flex-direction: row;
+      flex-wrap: wrap;
 
-      @media (min-width: 540px) {
-        width: 50%;
-        float: left;
-        margin-bottom: 2rem;
-
-        + .col {
-          margin-top: 0;
-        }
-      }
-
-      @media (min-width: 1040px) {
-        width: 25%;
+      > .col {
+        width: calc(50% - 1.5rem) !important;
+        margin-top: 1.5rem;
 
         + .col {
-          margin-top: 0;
+          margin-left: 0;
+        }
+
+        &:nth-child(2n) {
+          margin-left: 3rem;
         }
       }
+    }
+
+    @media (min-width: 941px) {
+      flex-direction: row;
+
+      > .col + .col {
+        margin-top: 0 !important;
+        margin-left: 3rem;
+      }
+
+      > .col {
+        width: 100%;
+
+        + .col {
+          margin-top: 3rem;
+        }
+      }
+    }
+
+    .col {
+      width: 100%;
 
       + .col {
-        margin-top: 2rem;
+        margin-top: 1.5rem;
       }
     }
   }
@@ -291,14 +323,11 @@ body {
     color: #000;
     background-color: #fff;
     padding: 1em;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    border-radius: 0 1.5rem 0 1.5rem;
     transform: scale(1);
     transition: all .33s cubic-bezier(.175, .885, .32, 1.275);
     font-size: 1.6rem;
     cursor: pointer;
-    flex: 1 0 auto;
 
     &.inactive {
       opacity: .8;
@@ -314,6 +343,7 @@ body {
     }
 
     > h3 {
+      border-radius: 0 1rem 0 1rem;
       background-color: #000;
       color: #fff;
       display: block;
@@ -329,13 +359,13 @@ body {
     > ul {
       list-style: none;
       padding-left: 0;
-      font-size: 1em;
+      font-size: .9em;
       line-height: 1.5;
-      height: 3 * 1em * 1.5;
       margin: auto 0 0;
 
-      > li {
-        font-weight: bold;
+      > .is-name {
+        margin-bottom: .25rem;
+        font-size: 1.15em;
       }
     }
 
